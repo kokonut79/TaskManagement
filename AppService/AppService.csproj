@@ -52,13 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\CompanyDTO.cs" />
-    <Compile Include="DTOs\TaskDTO.cs" />
+    <Compile Include="DTOs\TasksDTO.cs" />
     <Compile Include="DTOs\WorkerDTO.cs" />
+    <Compile Include="Implementations\CompaniesManagementService.cs" />
+    <Compile Include="Implementations\TasksManagementService.cs" />
+    <Compile Include="Implementations\WorkersManagementService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{0d5c153e-a17d-46b4-a74a-6fca2e2ab19c}</Project>

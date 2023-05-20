@@ -70,7 +70,6 @@
                 .ForeignKey("dbo.Tasks", t => t.TaskId)
                 .Index(t => t.TaskId)
                 .Index(t => t.CompanyId);
-
             
         }
         

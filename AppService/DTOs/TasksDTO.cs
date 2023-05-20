@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace AppService.DTOs
 {
-    public class TaskDTO
+    public class TasksDTO
     {
         public int TaskId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
+
+        public bool Validate()
+        {
+            return !String.IsNullOrEmpty(Title);
+        }
     }
 }

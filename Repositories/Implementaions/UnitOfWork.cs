@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data.Context;
 using Data.Entities;
+using System.Data.Entity;
 
 namespace Repositories.Implementaions
 {
@@ -14,7 +15,7 @@ namespace Repositories.Implementaions
         private TaskDbContext context = new TaskDbContext();
         private GenericRepository<Companies> companiesRepository;
         private GenericRepository<Workers> workersRepository;
-        private GenericRepository<Task> tasksRepository;
+        private GenericRepository<Tasks> tasksRepository;
         private GenericRepository<TaskToWorkers> tasksToWorkersRepository;
         public GenericRepository<Companies> CompaniesRepository
         {
@@ -41,14 +42,14 @@ namespace Repositories.Implementaions
                 return workersRepository;
             }
         }
-        public GenericRepository<Task> TasksRepository
+        public GenericRepository<Tasks> TasksRepository
         {
             get
             {
 
                 if (this.tasksRepository == null)
                 {
-                    this.tasksRepository = new GenericRepository<Task>(context);
+                    this.tasksRepository = new GenericRepository<Tasks>(context);
                 }
                 return tasksRepository;
             }
@@ -64,6 +65,10 @@ namespace Repositories.Implementaions
                 }
                 return tasksToWorkersRepository;
             }
+        }
+        public void Edit<T>(T entity) where T : class
+        {
+            context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Save()
