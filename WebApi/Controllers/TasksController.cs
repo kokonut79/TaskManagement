@@ -34,6 +34,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [Route("api/tasks/Save")]
         public IHttpActionResult Save(TasksDTO taskDto)
         {
             if (!taskDto.Validate())
@@ -53,38 +54,12 @@ namespace WebApi.Controllers
             else
             {
                 response.Code = 500;
-                response.Body = "Task was not saved.";
+                response.Error = "Task was not saved.";
             }
 
             return Json(response);
         }
-        [HttpPost]
-        
-        public IHttpActionResult Create(TasksDTO taskDto)
-        {
-            ResponseMessage response = new ResponseMessage();
-            try
-            {
-                bool success = _tasksService.Create(taskDto);
-                if (success)
-                {
-                    response.Code = 200;
-                    response.Body = "Created successful";
-                    
-                }
-                else
-                {
-                    response.Code = 500;
-                    response.Body = "Not Created";
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log the exception or handle it as needed
-                return InternalServerError(ex);
-            }
-            return Json(response);
-        }
+       
 
         [HttpPut]
         [Route("api/tasks/{id}")]

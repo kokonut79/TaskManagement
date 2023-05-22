@@ -9,8 +9,8 @@ namespace Data.Entities
 {
     public class BaseEntity
     {
-        public DateTime  CreatedOn { get; set; }
-        public DateTime UpdatedOn { get;set; }
+        public DateTime  CreatedOn { get; set; } = DateTime.Now;
+        public DateTime? UpdatedOn { get;set; }
 
     }
 }
