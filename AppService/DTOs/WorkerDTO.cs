@@ -13,9 +13,11 @@ namespace AppService.DTOs
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
         public string Email { get; set; }
-
-        public List<Tasks> AssignedTasks { get; set; }
-        public List<Companies> CompanyName { get; set; }
-
+        public int Age { get; set; }
+        public DateTime StartedWorkingOn { get; set; }
+        public decimal Salary { get; set; }
+        public int? CompanyId { get; set; } // Nullable int
+        public string CompanyName { get; set; }
     }
+
 }

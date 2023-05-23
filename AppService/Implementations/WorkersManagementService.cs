@@ -21,11 +21,12 @@ namespace AppService.Implementations
                 {
                     workerDtos.Add(new WorkerDTO
                     {
-                       // WorkerId = item.WorkerId,
+                        // WorkerId = item.WorkerId,
                         First_Name = item.First_Name,
                         Last_Name = item.Last_Name,
                         Email = item.Email,
-                        
+
+
                     });
                 }
             }
@@ -48,7 +49,7 @@ namespace AppService.Implementations
                         First_Name = worker.First_Name,
                         Last_Name = worker.Last_Name,
                         Email = worker.Email,
-                        
+
                     };
                 }
             }
@@ -62,35 +63,33 @@ namespace AppService.Implementations
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    Workers worker = new Workers()
+                    if (workerDto == null)
                     {
+                        return false;
+                    }
+                    var worker = new Workers
+                    {
+                        WorkerId = workerDto.WorkerId,
                         First_Name = workerDto.First_Name,
                         Last_Name = workerDto.Last_Name,
-                        Email = workerDto.Email
+                        Email = workerDto.Email,
+                        Age = workerDto.Age,
+                        StartedWorkingOn = workerDto.StartedWorkingOn,
+                        Salary = workerDto.Salary,
+                        CompanyId = workerDto.CompanyId // Assigning the CompanyId
+
                     };
-
-                    if (workerDto.AssignedTasks != null && workerDto.AssignedTasks.Count > 0)
-                    {
-                        foreach (var taskDto in workerDto.AssignedTasks)
-                        {
-                            Tasks task = unitOfWork.TasksRepository.GetByID(taskDto.TaskId);
-                            if (task != null)
-                            {
-                                worker.AssignedTasks.Add(task);
-                            }
-                        }
-                    }
-
                     unitOfWork.WorkersRepository.Insert(worker);
                     unitOfWork.Save();
-                }
 
-                return true;
+                    return true;
+                }
             }
             catch
             {
                 return false;
             }
+
         }
 
 
@@ -106,8 +105,7 @@ namespace AppService.Implementations
                         worker.First_Name = workerDto.First_Name;
                         worker.Last_Name = workerDto.Last_Name;
                         worker.Email = workerDto.Email;
-                        worker.Tasks = workerDto.AssignedTasks.Find(x => x.TaskId == worker.TaskId);
-                        worker.Company = workerDto.CompanyName.Find(x => x.CompanyId == worker.CompanyId);
+
 
                         unitOfWork.Save();
                     }

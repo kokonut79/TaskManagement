@@ -35,14 +35,11 @@ namespace WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Json(new ResponseMessage
-                {
-                    Code = 500,
-                    Error = "Data is not valid !  "
-                });
+                return BadRequest(ModelState);
             }
 
             ResponseMessage response = new ResponseMessage();
+
             if (_workersManagementService.Save(workerDto))
             {
                 response.Code = 200;
@@ -56,6 +53,7 @@ namespace WebApi.Controllers
 
             return Json(response);
         }
+
 
         [HttpPut]
         [Route("api/workers/Edit/{id}")]
