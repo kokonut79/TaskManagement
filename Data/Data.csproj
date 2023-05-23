@@ -57,13 +57,9 @@
     <Compile Include="Entities\Tasks.cs" />
     <Compile Include="Entities\TaskToWorkers.cs" />
     <Compile Include="Entities\Workers.cs" />
-    <Compile Include="Migrations\202305201201534_Initial.cs" />
-    <Compile Include="Migrations\202305201201534_Initial.designer.cs">
-      <DependentUpon>202305201201534_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305220516286_SecondTaskChange.cs" />
-    <Compile Include="Migrations\202305220516286_SecondTaskChange.designer.cs">
-      <DependentUpon>202305220516286_SecondTaskChange.cs</DependentUpon>
+    <Compile Include="Migrations\202305230709238_Initial.cs" />
+    <Compile Include="Migrations\202305230709238_Initial.designer.cs">
+      <DependentUpon>202305230709238_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,11 +69,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305201201534_Initial.resx">
-      <DependentUpon>202305201201534_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305220516286_SecondTaskChange.resx">
-      <DependentUpon>202305220516286_SecondTaskChange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305230709238_Initial.resx">
+      <DependentUpon>202305230709238_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -45,6 +45,7 @@ namespace AppService.Implementations
                     {
                         CompanyId = companies.CompanyId,
                         Name = companies.Name,
+                        Email = companies.Email,
                         Description = companies.Description
                     };
                 }
@@ -63,6 +64,7 @@ namespace AppService.Implementations
                     if (company != null)
                     {
                         company.Name = companyDto.Name;
+                        company.Email = companyDto.Email;
                         company.Description = companyDto.Description;
 
                         unitOfWork.Save();
@@ -81,8 +83,8 @@ namespace AppService.Implementations
         {
             Companies company = new Companies()
             {
-                CompanyId = companyDto.CompanyId,
                 Name = companyDto.Name,
+                Email = companyDto.Email,
                 Description = companyDto.Description
             };
 

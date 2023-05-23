@@ -4,47 +4,47 @@ using AppService.DTOs;
 using AppService.Implementations;
 using WebAPI.Messages;
 
-
 namespace WebApi.Controllers
 {
-    public class TasksController : ApiController
+    public class CompaniesController : ApiController
     {
-        private readonly TasksManagementService _tasksService;
+        private readonly CompaniesManagementService _companiesManagementService;
 
-        public TasksController()
+        public CompaniesController()
         {
-            _tasksService = new TasksManagementService();
+            _companiesManagementService = new CompaniesManagementService();
         }
 
         [HttpGet]
-        [Route("api/tasks")]
+        [Route("api/companies")]
         public IHttpActionResult Get()
         {
 
-            return Json(_tasksService.Get());
+            return Json(_companiesManagementService.Get());
         }
 
         [HttpGet]
-        [Route("api/tasks/{id}")]
+        [Route("api/companies/{id}")]
         public IHttpActionResult GetById(int id)
         {
-            return Json(_tasksService.GetById(id));
+            return Json(_companiesManagementService.GetById(id));
         }
 
         [HttpPost]
-        [Route("api/tasks/Save")]
-        public IHttpActionResult Save(TasksDTO taskDto)
+        [Route("api/companies/Save")]
+        public IHttpActionResult Save([FromBody]CompanyDTO companyDto)
         {
-            if (!taskDto.Validate())
+            if (!ModelState.IsValid)
             {
                 return Json(new ResponseMessage
                 {
-                    Code = 500, Error = "Data is not valid !  "
+                    Code = 500,
+                    Error = "Data is not valid !  "
                 });
             }
 
             ResponseMessage response = new ResponseMessage();
-            if (_tasksService.Save(taskDto))
+            if (_companiesManagementService.Save(companyDto))
             {
                 response.Code = 200;
                 response.Body = "Task is saved.";
@@ -57,16 +57,15 @@ namespace WebApi.Controllers
 
             return Json(response);
         }
-       
 
         [HttpPut]
-        [Route("api/tasks/{id}")]
-        public IHttpActionResult Edit(int id, [FromBody]TasksDTO taskDto)
+        [Route("api/companies/Edit/{id}")]
+        public IHttpActionResult Edit(int id, [FromBody] CompanyDTO companyDto)
         {
             ResponseMessage response = new ResponseMessage();
-            if (taskDto.TaskId == id)
+            if (companyDto.CompanyId == id)
             {
-                if (!taskDto.Validate())
+                if (!ModelState.IsValid)
                 {
                     return Json(new ResponseMessage
                     {
@@ -75,7 +74,7 @@ namespace WebApi.Controllers
                     });
                 }
 
-                if (_tasksService.Edit(taskDto))
+                if (_companiesManagementService.Edit(companyDto))
                 {
                     response.Code = 200;
                     response.Body = "Task was edited.";
@@ -86,16 +85,16 @@ namespace WebApi.Controllers
                     response.Body = "Task was not edited.";
                 }
             }
-                return Json(response);
+            return Json(response);
         }
 
         [HttpDelete]
-        [Route("api/tasks/{id}")]
+        [Route("api/companies/{id}")]
         public IHttpActionResult Delete(int id)
         {
             ResponseMessage response = new ResponseMessage();
 
-            if (_tasksService.Delete(id))
+            if (_companiesManagementService.Delete(id))
             {
                 response.Code = 200;
                 response.Body = "Task is deleted.";

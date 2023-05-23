@@ -17,7 +17,7 @@
                         Revenue = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Description = c.String(),
                         CreatedOn = c.DateTime(nullable: false),
-                        UpdatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.CompanyId);
             
@@ -29,10 +29,10 @@
                         Title = c.String(),
                         Description = c.String(),
                         StartDate = c.DateTime(nullable: false),
-                        EndDate = c.DateTime(nullable: false),
+                        EndDate = c.DateTime(),
                         Status = c.String(),
                         CreatedOn = c.DateTime(nullable: false),
-                        UpdatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.TaskId);
             
@@ -63,7 +63,7 @@
                         TaskId = c.Int(nullable: false),
                         CompanyId = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
-                        UpdatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.WorkerId)
                 .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
