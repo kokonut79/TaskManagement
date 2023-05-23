@@ -17,6 +17,7 @@ namespace Data.Entities
         public decimal Revenue { get; set; }
         public string Description { get; set; }
 
-    
+        public virtual List<Workers> Workers { get; set; }
+
     }
 }

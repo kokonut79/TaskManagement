@@ -21,11 +21,13 @@ namespace Data.Entities
         public decimal Salary { get; set; }
         
         public int TaskId { get; set; }
-        public Tasks Tasks { get; set; }
+        public virtual Tasks Tasks { get; set; }
        
         public int CompanyId { get; set; }
-        public Companies Company{ get; set; }
+        public virtual Companies Company { get; set; }
 
+        public virtual List<Tasks> AssignedTasks {get; set; }
+        public virtual List<Companies> CompaniesList { get; set; }
 
     }
 }

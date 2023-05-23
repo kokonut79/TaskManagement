@@ -21,7 +21,7 @@ namespace AppService.Implementations
                 {
                     workerDtos.Add(new WorkerDTO
                     {
-                        WorkerId = item.WorkerId,
+                       // WorkerId = item.WorkerId,
                         First_Name = item.First_Name,
                         Last_Name = item.Last_Name,
                         Email = item.Email,
@@ -44,10 +44,11 @@ namespace AppService.Implementations
                 {
                     workerDTO = new WorkerDTO()
                     {
-                         WorkerId = worker.WorkerId,
+                        // WorkerId = worker.WorkerId,
                         First_Name = worker.First_Name,
                         Last_Name = worker.Last_Name,
                         Email = worker.Email,
+                        
                     };
                 }
             }
@@ -57,18 +58,29 @@ namespace AppService.Implementations
 
         public bool Save(WorkerDTO workerDto)
         {
-            Workers worker = new Workers()
-            {
-                WorkerId = workerDto.WorkerId,
-                First_Name = workerDto.First_Name,
-                Last_Name = workerDto.Last_Name,
-                Email = workerDto.Email
-            };
-
             try
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
+                    Workers worker = new Workers()
+                    {
+                        First_Name = workerDto.First_Name,
+                        Last_Name = workerDto.Last_Name,
+                        Email = workerDto.Email
+                    };
+
+                    if (workerDto.AssignedTasks != null && workerDto.AssignedTasks.Count > 0)
+                    {
+                        foreach (var taskDto in workerDto.AssignedTasks)
+                        {
+                            Tasks task = unitOfWork.TasksRepository.GetByID(taskDto.TaskId);
+                            if (task != null)
+                            {
+                                worker.AssignedTasks.Add(task);
+                            }
+                        }
+                    }
+
                     unitOfWork.WorkersRepository.Insert(worker);
                     unitOfWork.Save();
                 }
@@ -80,6 +92,7 @@ namespace AppService.Implementations
                 return false;
             }
         }
+
 
         public bool Edit(WorkerDTO workerDto)
         {
@@ -93,7 +106,8 @@ namespace AppService.Implementations
                         worker.First_Name = workerDto.First_Name;
                         worker.Last_Name = workerDto.Last_Name;
                         worker.Email = workerDto.Email;
-                        
+                        worker.Tasks = workerDto.AssignedTasks.Find(x => x.TaskId == worker.TaskId);
+                        worker.Company = workerDto.CompanyName.Find(x => x.CompanyId == worker.CompanyId);
 
                         unitOfWork.Save();
                     }
