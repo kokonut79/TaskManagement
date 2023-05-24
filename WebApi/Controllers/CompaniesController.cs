@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Net;
 using System.Web.Http;
 using AppService.DTOs;
 using AppService.Implementations;
+using Microsoft.AspNetCore.Server.HttpSys;
 using WebAPI.Messages;
 
 namespace WebApi.Controllers
 {
+
+    [Authorize]
     public class CompaniesController : ApiController
     {
         private readonly CompaniesManagementService _companiesManagementService;
@@ -15,6 +19,7 @@ namespace WebApi.Controllers
             _companiesManagementService = new CompaniesManagementService();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/companies")]
         public IHttpActionResult Get()
@@ -23,6 +28,7 @@ namespace WebApi.Controllers
             return Json(_companiesManagementService.Get());
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/companies/{id}")]
         public IHttpActionResult GetById(int id)
@@ -30,6 +36,7 @@ namespace WebApi.Controllers
             return Json(_companiesManagementService.GetById(id));
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/companies/Save")]
         public IHttpActionResult Save([FromBody]CompanyDTO companyDto)
@@ -57,7 +64,7 @@ namespace WebApi.Controllers
 
             return Json(response);
         }
-
+        [AllowAnonymous]
         [HttpPut]
         [Route("api/companies/Edit/{id}")]
         public IHttpActionResult Edit(int id, [FromBody] CompanyDTO companyDto)
@@ -87,7 +94,7 @@ namespace WebApi.Controllers
             }
             return Json(response);
         }
-
+        [AllowAnonymous]
         [HttpDelete]
         [Route("api/companies/{id}")]
         public IHttpActionResult Delete(int id)

@@ -6,6 +6,7 @@ using WebAPI.Messages;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     public class WorkersController : ApiController
     {
         private readonly WorkersManagementService _workersManagementService;
@@ -15,20 +16,21 @@ namespace WebApi.Controllers
             _workersManagementService = new WorkersManagementService();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/workers")]
         public IHttpActionResult Get()
         {
             return Json(_workersManagementService.Get());
         }
-
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/workers/{id}")]
         public IHttpActionResult Get(int id)
         {
             return Json(_workersManagementService.GetById(id));
         }
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/workers/Save")]
         public IHttpActionResult Save([FromBody] WorkerDTO workerDto)
@@ -54,7 +56,7 @@ namespace WebApi.Controllers
             return Json(response);
         }
 
-
+        [AllowAnonymous]
         [HttpPut]
         [Route("api/workers/Edit")]
         public IHttpActionResult Edit( [FromBody] WorkerDTO workerDto)
@@ -85,6 +87,7 @@ namespace WebApi.Controllers
             return Json(response);
         }
 
+        [AllowAnonymous]
         [HttpDelete]
         [Route("api/workers/Delete/{id}")]
         public IHttpActionResult Delete(int id)

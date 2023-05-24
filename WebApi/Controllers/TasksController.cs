@@ -7,6 +7,7 @@ using WebAPI.Messages;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     public class TasksController : ApiController
     {
         private readonly TasksManagementService _tasksService;
@@ -16,6 +17,7 @@ namespace WebApi.Controllers
             _tasksService = new TasksManagementService();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/tasks")]
         public IHttpActionResult Get()
@@ -24,6 +26,7 @@ namespace WebApi.Controllers
             return Json(_tasksService.Get());
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/tasks/{id}")]
         public IHttpActionResult GetById(int id)
@@ -31,6 +34,7 @@ namespace WebApi.Controllers
             return Json(_tasksService.GetById(id));
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/tasks/Save")]
         public IHttpActionResult Save(TasksDTO taskDto)
@@ -57,8 +61,8 @@ namespace WebApi.Controllers
 
             return Json(response);
         }
-       
 
+        [AllowAnonymous]
         [HttpPut]
         [Route("api/tasks/Edit")]
         public IHttpActionResult Edit( [FromBody]TasksDTO taskDto)
@@ -89,6 +93,7 @@ namespace WebApi.Controllers
                 return Json(response);
         }
 
+        [AllowAnonymous]
         [HttpDelete]
         [Route("api/tasks/{id}")]
         public IHttpActionResult Delete(int id)
