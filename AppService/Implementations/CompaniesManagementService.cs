@@ -63,7 +63,6 @@ namespace AppService.Implementations
                     Companies company = unitOfWork.CompaniesRepository.GetByID(companyDto.CompanyId);
                     if (company != null)
                     {
-                        company.Id= companyDto.CompanyId;
                         company.Name = companyDto.Name;
                         company.Email = companyDto.Email;
                         company.Description = companyDto.Description;
@@ -86,7 +85,6 @@ namespace AppService.Implementations
         {
             Companies company = new Companies()
             {
-                Id = companyDto.CompanyId,
                 Name = companyDto.Name,
                 Email = companyDto.Email,
                 Description = companyDto.Description

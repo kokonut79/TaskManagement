@@ -1,4 +1,4 @@
-﻿@model MVC.Models.Workers.IndexVM
+﻿@model MVC.Models.Tasks.IndexVM
 
 @{
     ViewBag.Title = "Index";
@@ -6,9 +6,9 @@
 
 <h2>Index</h2>
 
-<form class="d-flex mt-3" role="search" action="/Worker/Index">
+<form class="d-flex mt-3" role="search" action="/Task/Index">
     @Html.HiddenFor(m => m.Pager.ItemsPerPage)
-    @Html.TextBoxFor(m => m.Filter.First_Name, new { placeholder = "Search by First Name ", @class = "form-control me-2" })
+    @Html.TextBoxFor(m => m.Filter.Title, new { placeholder = "Search by  Title ", @class = "form-control me-2" })
     <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
 </form>
 
@@ -20,21 +20,21 @@
 <table class="table">
     <tr>
         <th>
+            
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
             WorkerId
         </th>
-        <th>
-            First_Name
-        </th>
-        <th>
-            Last_Name
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            CompanyId
-        </th>
-
+       
         <th></th>
     </tr>
 
@@ -42,25 +42,24 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.TaskId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.WorkerId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.First_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Last_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyId)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.WorkerId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.WorkerId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.WorkerId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.TaskId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TaskId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TaskId })
             </td>
         </tr>
     }

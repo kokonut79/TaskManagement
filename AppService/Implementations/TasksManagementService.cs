@@ -62,7 +62,6 @@ namespace AppService.Implementations
         {
             Tasks task = new Tasks()
             {
-                Id = taskDto.TaskId,
                 Title = taskDto.Title,
                 Description = taskDto.Description,
                 Status = taskDto.Status,
@@ -94,7 +93,6 @@ namespace AppService.Implementations
                     Tasks task = unitOfWork.TasksRepository.GetByID(taskDto.TaskId);
                     if (task != null)
                     {
-                        task.Id = taskDto.TaskId;
                         task.Title = taskDto.Title;
                         task.Description = taskDto.Description;
                         task.Status = taskDto.Status;

@@ -70,7 +70,6 @@ namespace AppService.Implementations
                     }
                     var worker = new Workers
                     {
-                        Id = workerDto.WorkerId,
                         First_Name = workerDto.First_Name,
                         Last_Name = workerDto.Last_Name,
                         Email = workerDto.Email,

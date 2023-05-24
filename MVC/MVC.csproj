@@ -127,14 +127,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\WorkerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CompaniesVM.cs" />
+    <Compile Include="Models\Company\FilterVM.cs" />
+    <Compile Include="Models\Company\IndexVM.cs" />
+    <Compile Include="Models\PagerVM.cs" />
     <Compile Include="Models\TasksVM.cs" />
+    <Compile Include="Models\Tasks\FilterVM.cs" />
+    <Compile Include="Models\Tasks\IndexVM.cs" />
     <Compile Include="Models\WorkersVM.cs" />
+    <Compile Include="Models\Workers\FilterVM.cs" />
+    <Compile Include="Models\Workers\IndexVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -192,10 +201,21 @@
     <Content Include="Views\Worker\Delete.cshtml" />
     <Content Include="Views\Worker\Create.cshtml" />
     <Content Include="Views\Worker\Edit.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Task\Index.cshtml" />
+    <Content Include="Views\Task\Details.cshtml" />
+    <Content Include="Views\Task\Create.cshtml" />
+    <Content Include="Views\Task\Edit.cshtml" />
+    <Content Include="Views\Task\Delete.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Company\Details.cshtml" />
+    <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Company\Delete.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Partial\PagerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Tasks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -61,7 +61,4 @@ namespace WebApi
             return tokenString;
         }
     }
-
-   
-
 }

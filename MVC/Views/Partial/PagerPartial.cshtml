@@ -1,0 +1,55 @@
+﻿@model MVC.Models.Company.PagerVM
+
+@{
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+    string action = this.ViewContext.RouteData.Values["action"].ToString();
+
+    string formStatePager = "";
+    string formStateItemsPerPage = "";
+    foreach (string key in this.ViewContext.HttpContext.Request.QueryString.Keys)
+    {
+        if (key != "Pager.Page")
+        {
+            formStatePager += $"{key}={this.ViewContext.HttpContext.Request.QueryString[key]}&";
+        }
+        if (key != "Pager.Page" && key != "Pager.ItemsPerPage")
+        {
+            formStateItemsPerPage += $"{key}={this.ViewContext.HttpContext.Request.QueryString[key]}&";
+
+        }
+    }
+
+}
+
+<nav aria-label="...">
+    <ul class="pagination pagination-sm">
+        @for (int i = 1; i <= Model.PagesCount; i++)
+        {
+            <li class="page-link" class="page-item"> <a href="/@controller/@action?@formStatePager&Pager.Page=@i&">@i</a></li>
+        }
+    </ul>
+</nav>
+
+<script>
+    function ddlItemsPerPage_OnChange() {
+
+        let control = document.getElementById("ddlItemsPerPage");
+        document.location.href = "/@controller/@action?@formStateItemsPerPage&Pager.ItemsPerPage=" + control.value;
+    }
+
+    window.addEventListener('load', (event) => {
+        if (@Model.ItemsPerPage == 4) {
+            document.getElementById("ddlItemsPerPage").selectedIndex = 0;
+        } else if (@Model.ItemsPerPage == 8) {
+            document.getElementById("ddlItemsPerPage").selectedIndex = 1;
+        } else if (@Model.ItemsPerPage == 12) {
+            document.getElementById("ddlItemsPerPage").selectedIndex = 2;
+        }
+    });
+</script>
+
+<select id="ddlItemsPerPage" onchange="ddlItemsPerPage_OnChange()">
+    <option value="4">4</option>
+    <option value="8">8</option>
+    <option value="12">12</option>
+</select>
