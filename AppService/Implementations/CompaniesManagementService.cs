@@ -21,7 +21,7 @@ namespace AppService.Implementations
                 {
                     companyDtos.Add(new CompanyDTO
                     {
-                        CompanyId = item.CompanyId,
+                        CompanyId = item.Id,
                         Name = item.Name,
                         Email = item.Email,
                         Description = item.Description
@@ -43,7 +43,7 @@ namespace AppService.Implementations
                 {
                     companyDTO = new CompanyDTO()
                     {
-                        CompanyId = companies.CompanyId,
+                        CompanyId = companies.Id,
                         Name = companies.Name,
                         Email = companies.Email,
                         Description = companies.Description
@@ -63,10 +63,13 @@ namespace AppService.Implementations
                     Companies company = unitOfWork.CompaniesRepository.GetByID(companyDto.CompanyId);
                     if (company != null)
                     {
+                        company.Id= companyDto.CompanyId;
                         company.Name = companyDto.Name;
                         company.Email = companyDto.Email;
                         company.Description = companyDto.Description;
+                        
 
+                        unitOfWork.CompaniesRepository.Update(company);
                         unitOfWork.Save();
                     }
                 }
@@ -83,6 +86,7 @@ namespace AppService.Implementations
         {
             Companies company = new Companies()
             {
+                Id = companyDto.CompanyId,
                 Name = companyDto.Name,
                 Email = companyDto.Email,
                 Description = companyDto.Description

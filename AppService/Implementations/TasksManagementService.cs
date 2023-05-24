@@ -21,10 +21,11 @@ namespace AppService.Implementations
                 {
                     taskDtos.Add(new TasksDTO
                     {
-                        TaskId = item.TaskId,
+                        TaskId = item.Id,
                         Title = item.Title,
                         Description = item.Description,
-                        Status = item.Status
+                        Status = item.Status,
+                        WorkerId = item.WorkerId
                     });
                 }
             }
@@ -43,10 +44,13 @@ namespace AppService.Implementations
                 {
                     taskDTO = new TasksDTO()
                     {
-                        TaskId = task.TaskId,
+                        TaskId = task.Id,
                         Title = task.Title,
                         Description = task.Description,
-                        Status = task.Status
+                        Status = task.Status,
+                        WorkerId = task.WorkerId
+                        
+                        
                     };
                 }
             }
@@ -58,34 +62,11 @@ namespace AppService.Implementations
         {
             Tasks task = new Tasks()
             {
-                TaskId = taskDto.TaskId,
+                Id = taskDto.TaskId,
                 Title = taskDto.Title,
                 Description = taskDto.Description,
-                Status = taskDto.Status
-            };
-
-            try
-            {
-                using (UnitOfWork unitOfWork = new UnitOfWork())
-                {
-                    unitOfWork.TasksRepository.Insert(task);
-                    unitOfWork.Save();
-                }
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public bool Create(TasksDTO taskDto)
-        {
-            Tasks task = new Tasks()
-            {
-                Title = taskDto.Title,
-                Description = taskDto.Description,
-                Status = taskDto.Status
+                Status = taskDto.Status,
+                WorkerId = taskDto.WorkerId
             };
 
             try
@@ -113,10 +94,13 @@ namespace AppService.Implementations
                     Tasks task = unitOfWork.TasksRepository.GetByID(taskDto.TaskId);
                     if (task != null)
                     {
+                        task.Id = taskDto.TaskId;
                         task.Title = taskDto.Title;
                         task.Description = taskDto.Description;
                         task.Status = taskDto.Status;
+                        task.WorkerId = taskDto.WorkerId;
 
+                        unitOfWork.TasksRepository.Update(task);
                         unitOfWork.Save();
                     }
                 }

@@ -60,12 +60,12 @@ namespace WebApi.Controllers
        
 
         [HttpPut]
-        [Route("api/tasks/{id}")]
-        public IHttpActionResult Edit(int id, [FromBody]TasksDTO taskDto)
+        [Route("api/tasks/Edit")]
+        public IHttpActionResult Edit( [FromBody]TasksDTO taskDto)
         {
             ResponseMessage response = new ResponseMessage();
-            if (taskDto.TaskId == id)
-            {
+            
+            
                 if (!taskDto.Validate())
                 {
                     return Json(new ResponseMessage
@@ -85,7 +85,7 @@ namespace WebApi.Controllers
                     response.Code = 500;
                     response.Body = "Task was not edited.";
                 }
-            }
+            
                 return Json(response);
         }
 

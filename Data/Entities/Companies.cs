@@ -10,14 +10,10 @@ namespace Data.Entities
 {
     public class Companies : BaseEntity   
     {
-        [Key]
-        public int CompanyId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public decimal Revenue { get; set; }
+        public decimal? Revenue { get; set; }
         public string Description { get; set; }
-
-        public virtual List<Workers> Workers { get; set; }
-
+        
     }
 }

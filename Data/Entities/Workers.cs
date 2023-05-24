@@ -11,22 +11,13 @@ namespace Data.Entities
 {
     public class Workers : BaseEntity
     {
-        [Key]
-        public int WorkerId { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
         public string Email { get; set; }
-        public int Age { get; set; }
-        public DateTime StartedWorkingOn { get; set; }
-        public decimal Salary { get; set; }
-
-        public int TaskId { get; set; }
-        public virtual Tasks Tasks { get; set; }
-
+        public int? Age { get; set; }
+        public DateTime? StartedWorkingOn { get; set; }
+        public decimal? Salary { get; set; }
         public int? CompanyId { get; set; }
-        public virtual Companies Company { get; set; }
-
-        public virtual List<Tasks> AssignedTasks { get; set; }
-
+        public Companies Company { get; set; }
     }
 }

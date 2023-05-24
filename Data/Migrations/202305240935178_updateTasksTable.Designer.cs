@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class updateTasksTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateTasksTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202305230709238_Initial"; }
+            get { return "202305240935178_updateTasksTable"; }
         }
         
         string IMigrationMetadata.Source

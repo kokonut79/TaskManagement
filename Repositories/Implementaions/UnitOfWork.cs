@@ -16,7 +16,6 @@ namespace Repositories.Implementaions
         private GenericRepository<Companies> companiesRepository;
         private GenericRepository<Workers> workersRepository;
         private GenericRepository<Tasks> tasksRepository;
-        private GenericRepository<TaskToWorkers> tasksToWorkersRepository;
         public GenericRepository<Companies> CompaniesRepository
         {
             get
@@ -52,18 +51,6 @@ namespace Repositories.Implementaions
                     this.tasksRepository = new GenericRepository<Tasks>(context);
                 }
                 return tasksRepository;
-            }
-        }
-        public GenericRepository<TaskToWorkers> TasksToWorkersRepository
-        {
-            get
-            {
-
-                if (this.tasksToWorkersRepository == null)
-                {
-                    this.tasksToWorkersRepository = new GenericRepository<TaskToWorkers>(context);
-                }
-                return tasksToWorkersRepository;
             }
         }
         public void Edit<T>(T entity) where T : class

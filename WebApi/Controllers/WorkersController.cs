@@ -56,12 +56,12 @@ namespace WebApi.Controllers
 
 
         [HttpPut]
-        [Route("api/workers/Edit/{id}")]
-        public IHttpActionResult Edit(int id, [FromBody] WorkerDTO workerDto)
+        [Route("api/workers/Edit")]
+        public IHttpActionResult Edit( [FromBody] WorkerDTO workerDto)
         {
             ResponseMessage response = new ResponseMessage();
-            if (workerDto.WorkerId == id)
-            {
+           
+            
                 if (!ModelState.IsValid)
                 {
                     return Json(new ResponseMessage
@@ -81,7 +81,7 @@ namespace WebApi.Controllers
                     response.Code = 500;
                     response.Body = "Worker was not edited.";
                 }
-            }
+            
             return Json(response);
         }
 

@@ -21,11 +21,11 @@ namespace AppService.Implementations
                 {
                     workerDtos.Add(new WorkerDTO
                     {
-                        // WorkerId = item.WorkerId,
+                        WorkerId = item.Id,
                         First_Name = item.First_Name,
                         Last_Name = item.Last_Name,
                         Email = item.Email,
-
+                        CompanyId = item.CompanyId
 
                     });
                 }
@@ -45,10 +45,11 @@ namespace AppService.Implementations
                 {
                     workerDTO = new WorkerDTO()
                     {
-                        // WorkerId = worker.WorkerId,
+                        WorkerId = worker.Id,
                         First_Name = worker.First_Name,
                         Last_Name = worker.Last_Name,
                         Email = worker.Email,
+                        CompanyId = worker.CompanyId
 
                     };
                 }
@@ -69,14 +70,11 @@ namespace AppService.Implementations
                     }
                     var worker = new Workers
                     {
-                        WorkerId = workerDto.WorkerId,
+                        Id = workerDto.WorkerId,
                         First_Name = workerDto.First_Name,
                         Last_Name = workerDto.Last_Name,
                         Email = workerDto.Email,
-                        Age = workerDto.Age,
-                        StartedWorkingOn = workerDto.StartedWorkingOn,
-                        Salary = workerDto.Salary,
-                        CompanyId = workerDto.CompanyId // Assigning the CompanyId
+                        CompanyId = workerDto.CompanyId
 
                     };
                     unitOfWork.WorkersRepository.Insert(worker);
@@ -105,8 +103,9 @@ namespace AppService.Implementations
                         worker.First_Name = workerDto.First_Name;
                         worker.Last_Name = workerDto.Last_Name;
                         worker.Email = workerDto.Email;
+                        worker.CompanyId = workerDto.CompanyId;
 
-
+                        unitOfWork.WorkersRepository.Update(worker);
                         unitOfWork.Save();
                     }
                 }

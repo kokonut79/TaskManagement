@@ -13,18 +13,12 @@ namespace Data.Context
         public DbSet<Workers> Workers { get; set; }
         public DbSet<Tasks> Tasks { get; set; }
         public DbSet<Companies> Companies { get; set; }
-        public DbSet<TaskToWorkers> TaskToWorkers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Tasks>();
-            modelBuilder.Entity<Companies>(); 
-            modelBuilder.Entity<TaskToWorkers>();
-            modelBuilder.Entity<Workers>()
-                .HasRequired(w => w.Tasks)
-                .WithMany()
-                .HasForeignKey(w => w.TaskId)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Companies>();
+            modelBuilder.Entity<Workers>();
 
             base.OnModelCreating(modelBuilder);
         }
