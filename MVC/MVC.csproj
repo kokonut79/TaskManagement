@@ -249,6 +249,10 @@
       <Project>{E8363275-0607-4A92-8DF4-DACEDBFBFA23}</Project>
       <Name>AppService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{0d5c153e-a17d-46b4-a74a-6fca2e2ab19c}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebApi\WebApi.csproj">
       <Project>{68ab3d3c-c9e9-4f4a-913f-dea07aeafe4e}</Project>
       <Name>WebApi</Name>

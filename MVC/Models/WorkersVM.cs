@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppService.DTOs;
+using Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,5 +16,19 @@ namespace MVC.Models
         public string Last_Name { get; set; }
         public string Email { get; set; }
         public int? CompanyId { get; set; }
+
+        public List<Data.Entities.Tasks> Tasks { get; set; }
+
+        public WorkersVM() { }
+
+        public WorkersVM(WorkerDTO workerDTO )
+        {
+            WorkerId = workerDTO.WorkerId;
+            First_Name = workerDTO.First_Name;
+            Last_Name = workerDTO.Last_Name;
+            Email = workerDTO.Email;
+            CompanyId = workerDTO.CompanyId;
+            Tasks = workerDTO.AssignedTasks;
+        }
     }
 }

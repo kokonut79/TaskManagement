@@ -41,15 +41,25 @@ namespace AppService.Implementations
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
                 Workers worker = unitOfWork.WorkersRepository.GetByID(id);
+                List<Tasks> tasks = unitOfWork.TasksRepository.Get().ToList();
+                List<Tasks> assignedtasks = new List<Tasks>(); 
                 if (worker != null)
                 {
+                    foreach(var task in tasks)
+                    {
+                        if(task.WorkerId == worker.Id)
+                        {
+                            assignedtasks.Add(task);
+                        }
+                    }
                     workerDTO = new WorkerDTO()
                     {
                         WorkerId = worker.Id,
                         First_Name = worker.First_Name,
                         Last_Name = worker.Last_Name,
                         Email = worker.Email,
-                        CompanyId = worker.CompanyId
+                        CompanyId = worker.CompanyId,
+                        AssignedTasks = assignedtasks
 
                     };
                 }

@@ -41,6 +41,16 @@
         <dd>
             @Html.DisplayFor(model => model.CompanyId)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tasks)
+        </dt>
+
+        @foreach (var item in Model.Tasks)
+        {
+            <h5>@item.Title @item.Description</h5>
+
+            <hr />
+        }
 
     </dl>
 </div>

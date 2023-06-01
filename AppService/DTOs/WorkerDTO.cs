@@ -15,6 +15,8 @@ namespace AppService.DTOs
         public string Email { get; set; }
         public int? CompanyId { get; set; }
         public Companies Company { get; set; }
+
+        public List <Tasks> AssignedTasks { get; set; } 
     }
 
 }
